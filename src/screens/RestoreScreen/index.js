@@ -14,7 +14,7 @@ import TextInput from '../../components/TextInput';
 import {WhiteButton, BlueButton} from '../../components/Button';
 import Social from '../../components/Social';
 
-class RegisterScreen extends React.Component {
+class RestoreScreen extends React.Component {
   state = {
     email: '',
     password: '',
@@ -38,22 +38,11 @@ class RegisterScreen extends React.Component {
               value={this.state.email}
               onChangeText={(text) => this.setState({email: text})}
             />
-            <TextInput
-              label={'Password'}
-              styles={{marginTop: 15}}
-              value={this.state.password}
-              onChangeText={(text) => this.setState({password: text})}
-            />
-            <TextInput
-              label={'Password'}
-              styles={{marginTop: 15}}
-              value={this.state.password}
-              onChangeText={(text) => this.setState({password: text})}
-            />
           </View>
           <View key={'bottom'}>
             <View style={{marginBottom: 20}}>
-              <WhiteButton title={'Registration'} style={{marginTop: 15}} />
+              <WhiteButton title={'Restore password'} style={{marginTop: 15}} />
+              <BlueButton title={'Resend Email'} style={{marginTop: 15}} />
             </View>
             <Social />
           </View>
@@ -63,7 +52,7 @@ class RegisterScreen extends React.Component {
   }
 }
 
-export default RegisterScreen;
+export default RestoreScreen;
 
 var styles = StyleSheet.create({
   container: {

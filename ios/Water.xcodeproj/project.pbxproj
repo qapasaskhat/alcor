@@ -20,6 +20,8 @@
 		47B5A5D418CC1DFEF94FCB78 /* libPods-Water-WaterTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF43B36F7EBEECBE9F054B30 /* libPods-Water-WaterTests.a */; };
 		56413D1742EFE28AF63968B7 /* libPods-Water-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D09F823F8918FB86637B61 /* libPods-Water-tvOS.a */; };
 		900AB3835A1D0B222FFB8230 /* libPods-Water.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24553434B5E6BC7BB3079DEC /* libPods-Water.a */; };
+		86DC18110D0040C1A82ECDE0 /* SFProDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C759C3FBFDFB4DB3BFAD7585 /* SFProDisplay-Bold.ttf */; };
+		8DECAB0167AA42839B5A4F61 /* SFProDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CFF9DB8C09142BC926A1D7B /* SFProDisplay-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		E6D09F823F8918FB86637B61 /* libPods-Water-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Water-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		C759C3FBFDFB4DB3BFAD7585 /* SFProDisplay-Bold.ttf */ = {isa = PBXFileReference; name = "SFProDisplay-Bold.ttf"; path = "../assets/fonts/SFProDisplay-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0CFF9DB8C09142BC926A1D7B /* SFProDisplay-Regular.ttf */ = {isa = PBXFileReference; name = "SFProDisplay-Regular.ttf"; path = "../assets/fonts/SFProDisplay-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +185,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				78B8CE87DBE8BFC37B795B50 /* Pods */,
+				AF0F8923594A4CD5B7ECD226 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -197,6 +202,16 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		AF0F8923594A4CD5B7ECD226 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				C759C3FBFDFB4DB3BFAD7585 /* SFProDisplay-Bold.ttf */,
+				0CFF9DB8C09142BC926A1D7B /* SFProDisplay-Regular.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -340,6 +355,8 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				86DC18110D0040C1A82ECDE0 /* SFProDisplay-Bold.ttf in Resources */,
+				8DECAB0167AA42839B5A4F61 /* SFProDisplay-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
