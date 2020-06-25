@@ -9,6 +9,9 @@ import {icMain, icCamera, icMap} from '../../assets';
 
 function MyTabBar({state, descriptors, navigation}) {
   console.log(state.routes);
+  if (state.index === 1) {
+    return <View />;
+  }
   return (
     <View style={styles.shadow} elevation={5}>
       {state.routes.map((route, index) => {
@@ -88,7 +91,11 @@ class App extends React.Component {
     return (
       <Tab.Navigator tabBar={(props) => <MyTabBar {...props} />}>
         <Tab.Screen name="MainStack" component={MainStack} />
-        <Tab.Screen name="CameraStack" component={CameraStack} />
+        <Tab.Screen
+          name="CameraStack"
+          component={CameraStack}
+          options={{tabBarVisible: false}}
+        />
         <Tab.Screen name="MapStack" component={MapStack} />
       </Tab.Navigator>
     );
