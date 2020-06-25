@@ -9,21 +9,22 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {StyleSheet, ScrollView, View, Text, StatusBar} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-
+import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import {Provider} from 'react-redux';
 import InitialStack from './src/routers/InitialStack';
 import store from './src/redux/store';
-
 class App extends React.Component {
   render() {
     return (
-      <View style={{flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.2);'}}>
-        <Provider store={store}>
-          {/* <SafeAreaView style={{flex: 1}} forceInset={{bottom: 'never'}}> */}
-          <InitialStack />
-          {/* </SafeAreaView> */}
-        </Provider>
-      </View>
+      <SafeAreaProvider style={{backgroundColor: 'white'}}>
+        <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+          <View style={{flex: 1, backgroundColor: 'white'}}>
+            <Provider store={store}>
+              <InitialStack />
+            </Provider>
+          </View>
+        </SafeAreaView>
+      </SafeAreaProvider>
     );
   }
 }

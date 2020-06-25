@@ -6,6 +6,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import AuthStack from './AuthStack';
+import TabStack from './TabStack';
 
 class App extends React.Component {
   render() {
@@ -13,6 +14,11 @@ class App extends React.Component {
     return (
       <NavigationContainer>
         <Stack.Navigator>
+          <Stack.Screen
+            name="TabStack"
+            component={TabStack}
+            options={{headerShown: false}}
+          />
           <Stack.Screen
             name="AuthStack"
             component={AuthStack}

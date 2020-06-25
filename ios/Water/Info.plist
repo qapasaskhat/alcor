@@ -5,6 +5,8 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
+	<key>NSCameraUsageDescription</key>
+	<string>Your own description of the purpose</string>
 	<string>Water</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>

@@ -1,19 +1,17 @@
-import {createAppContainer} from 'react-navigation';
-import {createStackNavigator} from 'react-navigation-stack';
-
+import * as React from 'react';
+import {View, Text} from 'react-native';
+import {createStackNavigator} from '@react-navigation/stack';
 import {CameraScreen} from '../../../screens';
 
-const CameraStack = createAppContainer(
-  createStackNavigator(
-    {
-      CameraScreen,
-    },
-    {
-      initialRouteName: 'CameraScreen',
-      header: null,
-      headerMode: 'none',
-    },
-  ),
-);
+class CameraStack extends React.Component {
+  render() {
+    const Stack = createStackNavigator();
+    return (
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="CameraScreen" component={CameraScreen} />
+      </Stack.Navigator>
+    );
+  }
+}
 
 export default CameraStack;
