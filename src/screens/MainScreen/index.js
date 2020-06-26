@@ -210,7 +210,7 @@ var styles = StyleSheet.create({
   },
   minus: {
     width: 36,
-    height: 3,
+    height: 4,
     alignSelf: 'center',
     marginTop: 6,
   },
