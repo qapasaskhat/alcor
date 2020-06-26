@@ -10,6 +10,7 @@ import {
 import {RNCamera} from 'react-native-camera';
 import {BlurView, VibrancyView} from '@react-native-community/blur';
 import LinearGradient from 'react-native-linear-gradient';
+import {WebView} from 'react-native-webview';
 const {height} = Dimensions.get('screen');
 class CameraScreen extends React.Component {
   takePicture = async () => {
@@ -23,18 +24,45 @@ class CameraScreen extends React.Component {
     return (
       <View style={styles.container}>
         <View
-          style={{maxHeight: height * 0.25, backgroundColor: 'transparent'}}>
-          <BlurView
-            style={styles.absolute}
-            blurType="ultraThinMaterial"
-            blurAmount={14}
-            shadowRadius={50}
-            reducedTransparencyFallbackColor="white"
-            downsampleFactor={25}
-          />
-          <Text style={{backgroundColor: 'transprent'}}>vhiggiuygiuygyyoi</Text>
-        </View>
+          opacity={0.98}
+          style={{
+            backgroundColor: 'transprent',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            zIndex: 99,
+            width: '100%',
+            height: '20%',
+          }}>
+          <LinearGradient
+            locations={[0.2, 0.4, 0.6, 0.8, 1]}
+            colors={[
+              'rgba(48, 120, 255, 0.98)',
+              'rgba(48, 120, 255, 0.95)',
+              'rgba(48, 120, 255, 0.9)',
+              'rgba(48, 120, 255, 0.95)',
+              'rgba(48, 120, 255, 0.5)',
+            ]}
+            style={{flex: 1}}></LinearGradient>
 
+          <LinearGradient
+            locations={[0.2, 0.4, 0.6, 0.8, 1]}
+            start={{x: 0.0, y: 0.25}}
+            end={{x: 0.5, y: 1.0}}
+            colors={[
+              'rgba(48, 120, 255, 0.98)',
+              'rgba(48, 120, 255, 0.95)',
+              'rgba(48, 120, 255, 0.9)',
+              'rgba(48, 120, 255, 0.95)',
+              'rgba(48, 120, 255, 0.98)',
+            ]}
+            style={{
+              flex: 1,
+              position: 'absolute',
+              top: 0,
+              left: 0,
+            }}></LinearGradient>
+        </View>
         <RNCamera
           ref={(ref) => {
             this.camera = ref;
@@ -55,9 +83,19 @@ class CameraScreen extends React.Component {
             buttonNegative: 'Cancel',
           }}
           onGoogleVisionBarcodesDetected={({barcodes}) => {
-            console.log(barcodes);
+            // console.log(barcodes);
           }}
         />
+        <View
+          style={{
+            backgroundColor: 'rgba(48, 120, 255, 0.98)',
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            zIndex: 99,
+            width: '100%',
+            height: '25%',
+          }}></View>
       </View>
     );
   }
@@ -70,7 +108,7 @@ var styles = StyleSheet.create({
     flex: 1,
   },
   preview: {
-    height: '85%',
+    height: '100%',
     width: '100%',
     zIndex: 0,
   },
@@ -78,10 +116,30 @@ var styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     left: 0,
+    bottom: 0,
+    right: 0,
+    zIndex: 999,
+    backgroundColor: 'rgba(48, 120, 255, 0.9)',
+  },
+  top: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
     backgroundColor: 'rgba(48, 120, 255, 0.8)',
     zIndex: 10,
-    height: height * 0.5,
+  },
+  bottom: {
+    position: 'absolute',
+
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'rgba(48, 120, 255, 0.9)',
+    zIndex: 10,
+    height: '25%',
     width: '100%',
-    maxHeight: height * 0.5,
+    maxHeight: height * 0.25,
   },
 });
