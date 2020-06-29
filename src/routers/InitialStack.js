@@ -6,7 +6,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import AuthStack from './AuthStack';
-import TabStack from './TabStack';
+import AdminTabStack from './AdminTabStack';
+// import UserTabStack from './UserTabStack';
 
 class App extends React.Component {
   render() {
@@ -15,10 +16,15 @@ class App extends React.Component {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
-            name="TabStack"
-            component={TabStack}
+            name="AdminTabStack"
+            component={AdminTabStack}
             options={{headerShown: false}}
           />
+          {/* <Stack.Screen
+            name="UserTabStack"
+            component={UserTabStack}
+            options={{headerShown: false}}
+          /> */}
           <Stack.Screen
             name="AuthStack"
             component={AuthStack}

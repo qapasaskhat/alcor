@@ -27,16 +27,21 @@ import {
 
 import Item from '../../components/Item';
 
-class MainScreen extends React.Component {
+class AdminScreen extends React.Component {
   state = {
     modal: false,
     animation: 'linear',
+    type: [
+      {index: 0, title: 'Today’s water'},
+      {index: 1, title: 'All water'},
+    ],
+    current_type: {index: 0, title: 'Today’s water'},
   };
   render() {
     const {navigation} = this.props;
     return (
       <View style={{flex: 1, backgroundColor: '#F1F1F1'}}>
-        <Header title={'My water'} />
+        <Header title={this.state.current_type.title} />
         <ScrollView style={{padding: 10, paddingTop: 0, zIndex: 0}}>
           <ListCard
             onPress={() => navigation.navigate('InnerScreen')}
@@ -172,7 +177,7 @@ class MainScreen extends React.Component {
   }
 }
 
-export default MainScreen;
+export default AdminScreen;
 
 var styles = StyleSheet.create({
   filter: {

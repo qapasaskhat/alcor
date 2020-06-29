@@ -6,3 +6,6 @@ export {default as MainScreen} from './MainScreen';
 export {default as CameraScreen} from './CameraScreen';
 export {default as MapScreen} from './MapScreen';
 export {default as InnerScreen} from './InnerScreen';
+
+export {default as AdminInnerScreen} from './AdminInnerScreen';
+export {default as AdminMainScreen} from './AdminMainScreen';

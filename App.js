@@ -19,7 +19,6 @@ class App extends React.Component {
       <SafeAreaProvider style={{backgroundColor: 'white'}}>
         <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
           <View style={{flex: 1, backgroundColor: 'white'}}>
-            <Text>Hello world!</Text>
             <Provider store={store}>
               <InitialStack />
             </Provider>

@@ -1,17 +1,20 @@
 import * as React from 'react';
 import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import CameraStack from './CameraStack';
-import MainStack from './MainStack';
-import MapStack from './MapStack';
 
-import {icMain, icCamera, icMap} from '../../assets';
+import CameraStack from '../AppStack/CameraStack';
+import MainStack from '../AppStack/MainStack';
+import MapStack from '../AppStack/MapStack';
+import AdminStack from '../AppStack/AdminStack';
 
-function MyTabBar({state, descriptors, navigation}) {
+import {icMain, icCamera, icMap, icKey} from '../../assets';
+
+function MyTabBar({state, descriptors, navigation, onChangeType}) {
   console.log(state.routes);
-  if (state.index === 1) {
-    return <View />;
-  }
+  // if (state.index === 2) {
+  //   return <View />;
+  // }
+
   return (
     <View style={styles.shadow} elevation={5}>
       {state.routes.map((route, index) => {
@@ -24,8 +27,9 @@ function MyTabBar({state, descriptors, navigation}) {
             : route.name;
 
         const isFocused = state.index === index;
-
+        console.log(state.index);
         const onPress = () => {
+          onChangeType();
           const event = navigation.emit({
             type: 'tabPress',
             target: route.key,
@@ -55,12 +59,14 @@ function MyTabBar({state, descriptors, navigation}) {
             <Image
               style={
                 route.name !== 'CameraStack'
-                  ? {width: 22, height: 22}
-                  : {width: 60, height: 60}
+                  ? {width: 22, height: 22, resizeMode: 'contain'}
+                  : {width: 60, height: 60, resizeMode: 'contain'}
               }
               source={
                 route.name === 'MainStack'
                   ? icMain
+                  : route.name === 'AdminStack'
+                  ? icKey
                   : route.name === 'CameraStack'
                   ? icCamera
                   : icMap
@@ -75,7 +81,11 @@ function MyTabBar({state, descriptors, navigation}) {
                   alignSelf: 'center',
                   textAlign: 'center',
                 }}>
-                {route.name === 'MainStack' ? 'My water' : 'Map'}
+                {route.name === 'MainStack'
+                  ? 'My water'
+                  : route.name === 'AdminStack'
+                  ? 'Admin'
+                  : 'Map'}
               </Text>
             )}
           </TouchableOpacity>
@@ -86,11 +96,27 @@ function MyTabBar({state, descriptors, navigation}) {
 }
 
 class App extends React.Component {
+  state = {
+    type: true,
+  };
   render() {
     const Tab = createBottomTabNavigator();
     return (
-      <Tab.Navigator tabBar={(props) => <MyTabBar {...props} />}>
-        <Tab.Screen name="MainStack" component={MainStack} />
+      <Tab.Navigator
+        tabBar={(props) => (
+          <MyTabBar
+            onChangeType={() => {
+              this.setState({type: !this.state.type});
+            }}
+            {...props}
+          />
+        )}>
+        {this.state.type ? (
+          <Tab.Screen name="AdminStack" component={AdminStack} />
+        ) : (
+          <Tab.Screen name="MainStack" component={MainStack} />
+        )}
+
         <Tab.Screen
           name="CameraStack"
           component={CameraStack}

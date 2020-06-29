@@ -24,3 +24,23 @@ export const yes = require('./yes.png');
 export const minus = require('./minus.png');
 
 export const icImage = require('./image.png');
+
+export const icRazmetka = require('./icRazmetka.png');
+export const icSun = require('./icSun.png');
+export const icLine = require('./icLine.png');
+export const icUser = require('./icUser.png');
+export const icBigCamera = require('./Camera.png');
+export const icUpdate = require('./update.png');
+
+export const topLeft = require('./topLeft.png');
+export const topRight = require('./topRight.png');
+export const bottomLeft = require('./bottomLeft.png');
+export const bottomRight = require('./bottomRight.png');
+
+export const icTrue = require('./icTrue.png');
+export const replay = require('./replay.png');
+export const rateke = require('./rateke.png');
+
+export const close2 = require('./close2.png');
+
+export const icKey = require('./icKey.png');
