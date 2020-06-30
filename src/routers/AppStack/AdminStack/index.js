@@ -8,9 +8,8 @@ class MainStack extends React.Component {
     const Stack = createStackNavigator();
     return (
       <Stack.Navigator mode={'card'} screenOptions={{headerShown: false}}>
-        <Stack.Screen name="EditScreen" component={EditScreen} />
         <Stack.Screen name="AdminMainScreen" component={AdminMainScreen} />
-
+        <Stack.Screen name="EditScreen" component={EditScreen} />
         <Stack.Screen name="AdminInnerScreen" component={AdminInnerScreen} />
       </Stack.Navigator>
     );

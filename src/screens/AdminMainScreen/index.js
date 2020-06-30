@@ -52,35 +52,47 @@ class AdminScreen extends React.Component {
             this.setState({current_type: {index: 1, title: 'My water'}})
           }
         />
-        {this.state.current_type.index === 1 ? (
+        {this.state.current_type.index === 0 ? (
           <ScrollView style={{padding: 10, paddingTop: 0, zIndex: 0}}>
             <ListCard
-              onPress={() => navigation.navigate('InnerScreen')}
+              onPress={() =>
+                navigation.navigate('AdminInnerScreen', {all: true})
+              }
               item={{active: true}}
             />
             <ListCard
-              onPress={() => navigation.navigate('InnerScreen')}
+              onPress={() =>
+                navigation.navigate('AdminInnerScreen', {all: true})
+              }
               item={{active: true}}
             />
           </ScrollView>
         ) : (
           <ScrollView style={{padding: 10, paddingTop: 0, zIndex: 0}}>
             <ListCard
-              onPress={() => navigation.navigate('InnerScreen')}
+              onPress={() =>
+                navigation.navigate('AdminInnerScreen', {all: false})
+              }
               item={{active: true}}
             />
             <ListCard
-              onPress={() => navigation.navigate('InnerScreen')}
+              onPress={() =>
+                navigation.navigate('AdminInnerScreen', {all: false})
+              }
               item={{active: false}}
             />
             <ListCard
-              onPress={() => navigation.navigate('InnerScreen')}
-              item={{active: true}}
+              onPress={() =>
+                navigation.navigate('AdminInnerScreen', {all: false})
+              }
+              item={{active: false}}
             />
 
             <ListCard
-              onPress={() => navigation.navigate('InnerScreen')}
-              item={{active: true}}
+              onPress={() =>
+                navigation.navigate('AdminInnerScreen', {all: false})
+              }
+              item={{active: false}}
             />
           </ScrollView>
         )}

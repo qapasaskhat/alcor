@@ -7,7 +7,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import AuthStack from './AuthStack';
 import AdminTabStack from './AdminTabStack';
-// import UserTabStack from './UserTabStack';
+import UserTabStack from './UserTabStack';
 
 class App extends React.Component {
   render() {
@@ -20,11 +20,13 @@ class App extends React.Component {
             component={AdminTabStack}
             options={{headerShown: false}}
           />
-          {/* <Stack.Screen
+
+          <Stack.Screen
             name="UserTabStack"
             component={UserTabStack}
             options={{headerShown: false}}
-          /> */}
+          />
+
           <Stack.Screen
             name="AuthStack"
             component={AuthStack}

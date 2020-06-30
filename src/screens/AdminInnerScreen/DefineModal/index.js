@@ -1,155 +1,166 @@
 import React from 'react';
 import {
   StyleSheet,
-  ScrollView,
   View,
   Text,
-  Alert,
   Image,
   TouchableOpacity,
   Dimensions,
-  FlatList,
-  Modal,
 } from 'react-native';
-import Header from '../../components/Header';
-import {InnerCard} from '../../components/Card';
-import DefineModal from './DefineModal';
 
-const {width} = Dimensions.get('window');
-const width_window = width;
-class InnerScreen extends React.Component {
+import LinearGradient from 'react-native-linear-gradient';
+import {touch, icEllipse, replay, icTrue, close2} from '../../../assets';
+const {width, height} = Dimensions.get('window');
+
+class DefineModal extends React.Component {
   state = {
-    active: true,
-    width: 0,
-    height: 0,
-    ratio: 0,
-    edit: false,
-    define: false,
+    marker: [],
   };
-  handleTextRef = (ref) => (this.text = ref);
-
-  componentDidMount() {
-    Image.getSize(myUri, (width, height) => {
-      console.log(width, height);
-      let ratio = (width_window - 20) / width;
-      this.setState({width, height, ratio});
+  handlePress(evt) {
+    console.log(evt.nativeEvent);
+    console.log(Dimensions.get('window').width);
+    this.setState({
+      marker: [
+        ...this.state.marker,
+        {
+          top: evt.nativeEvent.locationY,
+          left: evt.nativeEvent.locationX,
+          zIndex: this.state.marker.length + 1,
+          position: 'absolute',
+        },
+      ],
     });
   }
-
-  _renderItem = ({item, index}) => {
-    return (
-      <View style={styles.card}>
-        <View style={styles.miniCard}>
-          <Text style={styles.textCard}>pH</Text>
-        </View>
-      </View>
-    );
-  };
-
-  onPressEdit = () => {
-    this.setState({edit: !this.state.edit});
-  };
-
-  _renderContent = () => {
+  render() {
+    const {onClose} = this.props;
     return (
       <View>
-        <View style={{marginTop: 10, marginBottom: 10, paddingTop: 5}}>
-          <Text style={styles.result}>Result</Text>
-          <FlatList
-            data={[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]}
-            numColumns={5}
-            columnWrapperStyle={styles.flatlist}
-            renderItem={this._renderItem}
-          />
-        </View>
-        <View style={styles.line} />
-        <View>
-          <Text style={styles.result}>What does it mean?</Text>
-          <Text style={styles.description}>{description}</Text>
-        </View>
-      </View>
-    );
-  };
-
-  _renderImage = () => {
-    return (
-      <View style={{marginTop: -10}}>
-        <Image
+        <View
           style={{
-            width: width - 20,
-            height: this.state.height * this.state.ratio,
-            borderBottomLeftRadius: 12,
-            borderBottomRightRadius: 12,
-          }}
-          source={{
-            uri: myUri,
-          }}
-        />
-        {this.state.edit && (
-          <View style={styles.absoluteTop}>
-            <FlatList
-              data={[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]}
-              numColumns={5}
-              columnWrapperStyle={styles.flatlist}
-              renderItem={this._renderItem}
-            />
-          </View>
-        )}
-        <View style={styles.view}>
-          <TouchableOpacity
-            onPress={() => this.onPressEdit()}
-            style={[
-              styles.btn,
-              {backgroundColor: this.state.edit ? '#3078FF' : 'white'},
-            ]}>
-            <Text
-              style={[
-                styles.txt,
-                {color: this.state.edit ? 'white' : '#3F3F3F'},
-              ]}>
-              {this.state.edit ? 'Save result' : 'Edit result'}
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => this.setState({define: true})}
-            style={styles.btn}>
-            <Text style={styles.txt}>Define shape</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    );
-  };
-  render() {
-    const {all} = this.props.route.params;
-    return (
-      <View style={{flex: 1, backgroundColor: '#F1F1F1'}}>
-        <Header title={all ? 'All water' : 'My water'} />
-        <ScrollView style={{padding: 10, paddingTop: 0, zIndex: 0}}>
-          <View
-            style={{borderRadius: 12, backgroundColor: 'white', marginTop: 15}}>
-            <InnerCard
-              item={{active: true}}
-              status={this.state.active}
-              onPress={() => this.setState({active: !this.state.active})}
-            />
-            {this.state.active ? this._renderContent() : this._renderImage()}
-          </View>
-        </ScrollView>
-        <Modal
-          visible={this.state.define}
-          animationType="slide"
-          transparent={false}
-          onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
+            height: '25%',
           }}>
-          <DefineModal onClose={() => this.setState({define: false})} />
-        </Modal>
+          <LinearGradient
+            colors={['rgba(14, 98, 255, 0.85)', 'rgba(48, 120, 255, 0.65)']}
+            locations={[0.0, 1]}
+            style={{flex: 1, justifyContent: 'center'}}>
+            <View style={{alignSelf: 'center', marginBottom: 20}}>
+              <Image
+                source={touch}
+                style={{
+                  height: 120,
+                  width: 90,
+                  resizeMode: 'contain',
+                }}
+              />
+            </View>
+            <View style={styles.bottomVIew}>
+              <Text style={styles.textBottom}>
+                Help us find the sensor{'\n'}by taping on each corner
+              </Text>
+            </View>
+          </LinearGradient>
+        </View>
+        <View
+          style={{
+            height: '45%',
+            backgroundColor: 'white',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <View
+            onTouchStart={(evt) => this.handlePress(evt)}
+            style={{
+              resizeMode: 'cover',
+              width: '100%',
+              height: '100%',
+              alignSelf: 'center',
+              justifyContent: 'center',
+            }}>
+            <View
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                flex: 1,
+                zIndex: 10,
+              }}>
+              {this.state.marker.length > 0 &&
+                this.state.marker.map((item) => (
+                  <View pointerEvents={'none'} style={[item]}>
+                    <Image
+                      source={icEllipse}
+                      style={[
+                        {
+                          width: 30,
+                          height: 30,
+                          marginTop: -15,
+                          marginLeft: -15,
+                          resizeMode: 'contain',
+                        },
+                        ,
+                      ]}
+                    />
+                  </View>
+                ))}
+            </View>
+            <Image
+              source={{
+                uri:
+                  'https://upload.wikimedia.org/wikipedia/commons/4/47/New_york_times_square-terabass.jpg',
+              }}
+              style={{
+                resizeMode: 'cover',
+                width: '100%',
+                height: height * 0.45,
+                zIndex: 0,
+              }}
+            />
+          </View>
+        </View>
+        <View
+          style={{
+            height: '30%',
+          }}>
+          <LinearGradient
+            colors={['rgba(14, 98, 255, 0.85)', 'rgba(48, 120, 255, 0.65)']}
+            locations={[0.0, 1]}
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-around',
+            }}>
+            <TouchableOpacity
+              onPress={() => onClose()}
+              style={styles.borderRadius}>
+              <Image source={close2} style={styles.iconUser} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.view1} onPress={() => onClose()}>
+              <Image source={icTrue} style={[styles.camera]} />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.update}
+              onPress={() =>
+                this.setState({
+                  marker: this.state.marker.slice(
+                    0,
+                    this.state.marker.length - 1,
+                  ),
+                })
+              }>
+              <Image source={replay} style={styles.iconUpdate} />
+            </TouchableOpacity>
+          </LinearGradient>
+        </View>
       </View>
     );
   }
 }
 
-export default InnerScreen;
+export default DefineModal;
 
 var styles = StyleSheet.create({
   filter: {

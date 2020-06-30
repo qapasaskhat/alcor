@@ -90,18 +90,21 @@ class EditProfile extends React.Component {
           ) : (
             <this.InputView />
           )}
-          {
-              success?
-              <WhiteButton 
-                title={error?'Try again':'Done'} 
-                onPress={()=>{
-                    error
-                    ?this.setState({
-                        error: false,
-                        success: false
-                    }) 
-                    :navigation.goBack()}} />
-              :<this.button />}
+          {success ? (
+            <WhiteButton
+              title={error ? 'Try again' : 'Done'}
+              onPress={() => {
+                error
+                  ? this.setState({
+                      error: false,
+                      success: false,
+                    })
+                  : navigation.goBack();
+              }}
+            />
+          ) : (
+            <this.button />
+          )}
         </View>
       </View>
     );

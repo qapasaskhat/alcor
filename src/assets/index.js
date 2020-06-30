@@ -50,3 +50,5 @@ export const icEllipse = require('./icEllipse.png');
 export const editIcon = require('./editIcon.png');
 export const successIcon = require('./successIcon.png');
 export const errorIcon = require('./errorIcon.png');
+
+export const touch = require('./touch.png');

@@ -1,13 +1,9 @@
 import React from 'react';
 import {View, Text, SafeAreaView, StyleSheet, Image} from 'react-native';
 import Header from '../../components/Header';
-import {BlueButton,WhiteButton} from '../../components/Button';
+import {BlueButton, WhiteButton} from '../../components/Button';
 import TextInput from '../../components/TextInput';
-import {
-    editIcon,
-    successIcon,
-    errorIcon
-} from '../../assets';
+import {editIcon, successIcon, errorIcon} from '../../assets';
 
 const Input = () => {
   return (
@@ -33,7 +29,7 @@ class ChangePassword extends React.Component {
     changePassword: false,
     error: false,
     textSuccess: 'Password \nchanged successfully!',
-    textError:'Password \nhas not been changed'
+    textError: 'Password \nhas not been changed',
   };
   InputView = () => {
     const {password, newPassword, name, email, repeatNewPassword} = this.state;
@@ -70,17 +66,31 @@ class ChangePassword extends React.Component {
       </View>
     );
   };
-  button =()=>{
-      return(
-        <View>
-            <BlueButton title="Change password" onPress={() => {this.setState({changePassword: true})}} />
-        </View>
-      )
-  }
+  button = () => {
+    return (
+      <View>
+        <BlueButton
+          title="Change password"
+          onPress={() => {
+            this.setState({changePassword: true});
+          }}
+        />
+      </View>
+    );
+  };
 
   render() {
     const {navigation} = this.props;
-    const {password, newPassword, name, email, error,changePassword, textError, textSuccess} = this.state;
+    const {
+      password,
+      newPassword,
+      name,
+      email,
+      error,
+      changePassword,
+      textError,
+      textSuccess,
+    } = this.state;
     return (
       <View style={styles.container}>
         <Header title="My account" onBack onPress={() => navigation.goBack()} />
@@ -89,25 +99,34 @@ class ChangePassword extends React.Component {
             <Text style={styles.name}>{name}</Text>
             <Text style={styles.email}>{email}</Text>
           </View>
-          {
-              changePassword?
-              <View style={styles.successView}>
-                  <Image source={error?errorIcon: successIcon} style={styles.successImg} />
-                <Text style={styles.textSuccess}>{error?textError:textSuccess}</Text>
-              </View>:
-              <this.InputView />
-            }
-          {changePassword?
-          <WhiteButton 
-            title={error?'Try again':'Done'} 
-            onPress={()=>{
+          {changePassword ? (
+            <View style={styles.successView}>
+              <Image
+                source={error ? errorIcon : successIcon}
+                style={styles.successImg}
+              />
+              <Text style={styles.textSuccess}>
+                {error ? textError : textSuccess}
+              </Text>
+            </View>
+          ) : (
+            <this.InputView />
+          )}
+          {changePassword ? (
+            <WhiteButton
+              title={error ? 'Try again' : 'Done'}
+              onPress={() => {
                 error
-                ?this.setState({
-                    error: false,
-                    changePassword: false
-                })
-                :navigation.goBack()}}/>
-          :<this.button />}
+                  ? this.setState({
+                      error: false,
+                      changePassword: false,
+                    })
+                  : navigation.goBack();
+              }}
+            />
+          ) : (
+            <this.button />
+          )}
         </View>
       </View>
     );
@@ -149,21 +168,21 @@ const styles = StyleSheet.create({
     height: 16,
     resizeMode: 'contain',
   },
-  successView:{
-      alignSelf: 'center',
-      alignItems:'center'
+  successView: {
+    alignSelf: 'center',
+    alignItems: 'center',
   },
-  successImg:{
-      width: 92,
-      height: 92,
-      resizeMode: 'contain',
-      marginBottom:16
+  successImg: {
+    width: 92,
+    height: 92,
+    resizeMode: 'contain',
+    marginBottom: 16,
   },
-  textSuccess:{
-      fontSize: 24,
-      lineHeight: 24,
-      fontFamily: 'SFProDisplay-Bold',
-      fontWeight: '500',
-      textAlign:'center'
-  }
+  textSuccess: {
+    fontSize: 24,
+    lineHeight: 24,
+    fontFamily: 'SFProDisplay-Bold',
+    fontWeight: '500',
+    textAlign: 'center',
+  },
 });
