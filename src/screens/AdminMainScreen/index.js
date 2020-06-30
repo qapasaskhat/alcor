@@ -26,44 +26,64 @@ import {
 } from '../../assets';
 
 import Item from '../../components/Item';
+import TopView from '../../components/TopView';
 
 class AdminScreen extends React.Component {
   state = {
     modal: false,
     animation: 'linear',
     type: [
-      {index: 0, title: 'Today’s water'},
-      {index: 1, title: 'All water'},
+      {index: 1, title: 'My water'},
+      {index: 0, title: 'All water'},
     ],
-    current_type: {index: 0, title: 'Today’s water'},
+    current_type: {index: 0, title: 'All water'},
   };
   render() {
     const {navigation} = this.props;
     return (
       <View style={{flex: 1, backgroundColor: '#F1F1F1'}}>
         <Header title={this.state.current_type.title} />
-        <ScrollView style={{padding: 10, paddingTop: 0, zIndex: 0}}>
-          <ListCard
-            onPress={() => navigation.navigate('InnerScreen')}
-            item={{active: true}}
-          />
-          <ListCard
-            onPress={() => navigation.navigate('InnerScreen')}
-            item={{active: true}}
-          />
-          <ListCard
-            onPress={() => navigation.navigate('InnerScreen')}
-            item={{active: false}}
-          />
-          <ListCard
-            onPress={() => navigation.navigate('InnerScreen')}
-            item={{active: true}}
-          />
-          <ListCard
-            onPress={() => navigation.navigate('InnerScreen')}
-            item={{active: true}}
-          />
-        </ScrollView>
+        <TopView
+          current_type={this.state.current_type}
+          onPressOne={() =>
+            this.setState({current_type: {index: 0, title: 'All water'}})
+          }
+          onPressTwo={() =>
+            this.setState({current_type: {index: 1, title: 'My water'}})
+          }
+        />
+        {this.state.current_type.index === 1 ? (
+          <ScrollView style={{padding: 10, paddingTop: 0, zIndex: 0}}>
+            <ListCard
+              onPress={() => navigation.navigate('InnerScreen')}
+              item={{active: true}}
+            />
+            <ListCard
+              onPress={() => navigation.navigate('InnerScreen')}
+              item={{active: true}}
+            />
+          </ScrollView>
+        ) : (
+          <ScrollView style={{padding: 10, paddingTop: 0, zIndex: 0}}>
+            <ListCard
+              onPress={() => navigation.navigate('InnerScreen')}
+              item={{active: true}}
+            />
+            <ListCard
+              onPress={() => navigation.navigate('InnerScreen')}
+              item={{active: false}}
+            />
+            <ListCard
+              onPress={() => navigation.navigate('InnerScreen')}
+              item={{active: true}}
+            />
+
+            <ListCard
+              onPress={() => navigation.navigate('InnerScreen')}
+              item={{active: true}}
+            />
+          </ScrollView>
+        )}
         <TouchableOpacity
           onPress={() => {
             this.setState({animation: 'easeInEaseOut'}, () => {

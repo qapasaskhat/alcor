@@ -44,3 +44,5 @@ export const rateke = require('./rateke.png');
 export const close2 = require('./close2.png');
 
 export const icKey = require('./icKey.png');
+
+export const icEllipse = require('./icEllipse.png');

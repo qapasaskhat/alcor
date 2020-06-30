@@ -65,8 +65,8 @@ function MyTabBar({state, descriptors, navigation, onChangeType}) {
               source={
                 route.name === 'MainStack'
                   ? icMain
-                  : route.name === 'AdminStack'
-                  ? icKey
+                  : route.name === 'All water'
+                  ? icMain
                   : route.name === 'CameraStack'
                   ? icCamera
                   : icMap
@@ -111,12 +111,7 @@ class App extends React.Component {
             {...props}
           />
         )}>
-        {this.state.type ? (
-          <Tab.Screen name="AdminStack" component={AdminStack} />
-        ) : (
-          <Tab.Screen name="MainStack" component={MainStack} />
-        )}
-
+        <Tab.Screen name="AdminStack" component={AdminStack} />
         <Tab.Screen
           name="CameraStack"
           component={CameraStack}

@@ -82,6 +82,9 @@ target 'Water' do
 
 
   pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
+  pod 'rn-fetch-blob',
+    :path => '../node_modules/rn-fetch-blob'
 
   target 'WaterTests' do
     inherit! :complete
@@ -90,14 +93,31 @@ target 'Water' do
 
   use_native_modules!
 
+  pod 'RNPhotoEditor', :path => '../node_modules/react-native-photo-editor/ios'
+
+  use_frameworks!
+
+  pod 'iOSPhotoEditor', :git => 'https://github.com/prscX/photo-editor', :branch => 'master'
+
+  post_install do |installer|
+    flipper_post_install(installer)
+    installer.pods_project.targets.each do |target|
+      if target.name.include?('iOSPhotoEditor')
+        target.build_configurations.each do |config|
+          config.build_settings['SWIFT_VERSION'] = '5'
+        end
+      end
+    end
+  end
+
   # Enables Flipper.
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and
   # you should disable these next few lines.
-  add_flipper_pods!
-  post_install do |installer|
-    flipper_post_install(installer)
-  end
+  # add_flipper_pods!
+  # post_install do |installer|
+  #   flipper_post_install(installer)
+  # end
 end
 
 target 'Water-tvOS' do

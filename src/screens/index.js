@@ -9,3 +9,4 @@ export {default as InnerScreen} from './InnerScreen';
 
 export {default as AdminInnerScreen} from './AdminInnerScreen';
 export {default as AdminMainScreen} from './AdminMainScreen';
+export {default as EditScreen} from './EditScreen';
