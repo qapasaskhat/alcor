@@ -46,3 +46,7 @@ export const close2 = require('./close2.png');
 export const icKey = require('./icKey.png');
 
 export const icEllipse = require('./icEllipse.png');
+
+export const editIcon = require('./editIcon.png');
+export const successIcon = require('./successIcon.png');
+export const errorIcon = require('./errorIcon.png');

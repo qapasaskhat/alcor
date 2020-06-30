@@ -36,7 +36,7 @@ class MainScreen extends React.Component {
     const {navigation} = this.props;
     return (
       <View style={{flex: 1, backgroundColor: '#F1F1F1'}}>
-        <Header title={'My water'} />
+        <Header title={'My water'} onPress={()=> {navigation.navigate('EditProfile')} }/>
         <ScrollView style={{padding: 10, paddingTop: 0, zIndex: 0}}>
           <ListCard
             onPress={() => navigation.navigate('InnerScreen')}
