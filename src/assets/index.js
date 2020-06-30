@@ -24,3 +24,7 @@ export const yes = require('./yes.png');
 export const minus = require('./minus.png');
 
 export const icImage = require('./image.png');
+
+export const editIcon = require('./editIcon.png');
+export const successIcon = require('./successIcon.png')
+export const errorIcon = require('./errorIcon.png')
