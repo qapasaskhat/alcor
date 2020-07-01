@@ -1,22 +1,19 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, Text} from 'react-native';
 
-class BlueButton extends React.Component {
-  render() {
-    const {style, textStyle, onPress} = this.props;
-    return (
-      <TouchableOpacity
-        onPress={() => {
-          if (onPress) onPress();
-        }}
-        style={[styles.container, style && style]}>
-        <Text style={[styles.text, textStyle && textStyle]}>
-          {this.props.title}
-        </Text>
-      </TouchableOpacity>
-    );
-  }
-}
+const BlueButton = ({style, textStyle, onPress}) => {
+  return (
+    <TouchableOpacity
+      onPress={() => {
+        if (onPress) onPress();
+      }}
+      style={[styles.container, style && style]}>
+      <Text style={[styles.text, textStyle && textStyle]}>
+        {this.props.title}
+      </Text>
+    </TouchableOpacity>
+  );
+};
 
 export default BlueButton;
 

@@ -11,17 +11,17 @@ class TextInput extends React.Component {
         <Reinput
           onChangeText={(text) => onChangeText(text)}
           placeholderColor={'white'}
-          labelActiveColor={editColor?'transparent':'white'}
+          labelActiveColor={editColor ? 'transparent' : 'white'}
           label={label}
           value={value}
-          color={ editColor?'#3078FF': 'white'}
-          underlineActiveColor={ editColor?'#3078FF':'white'}
-          labelColor={editColor?'#3078FF':'white'}
+          color={editColor ? '#3078FF' : 'white'}
+          underlineActiveColor={editColor ? '#3078FF' : 'white'}
+          labelColor={editColor ? '#3078FF' : 'white'}
           underlineColor={'transparent'}
-          style={{padding: 0, height: 44,}}
+          style={{padding: 0, height: 44}}
         />
         <LinearGradient
-          colors={[editColor?'#3078FF':'white', 'rgba(255, 255, 255, 0)']}
+          colors={[editColor ? '#3078FF' : 'white', 'rgba(255, 255, 255, 0)']}
           locations={[0, 1]}
           start={{x: 0, y: 0}}
           end={{x: 1, y: 0}}

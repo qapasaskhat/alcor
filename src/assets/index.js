@@ -52,3 +52,5 @@ export const successIcon = require('./successIcon.png');
 export const errorIcon = require('./errorIcon.png');
 
 export const touch = require('./touch.png');
+
+export const icExit = require('./icExit.png');

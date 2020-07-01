@@ -14,8 +14,13 @@ class Header extends React.Component {
           </View>
           <TouchableOpacity style={{marginRight: 10}} onPress={onPress}>
             <Image
-              source={ onBack? close: icMore}
-              style={{width: onBack?18: 6, height: 25, resizeMode: 'contain', tintColor:'#C4C4C4'}}
+              source={onBack ? close : icMore}
+              style={{
+                width: onBack ? 18 : 6,
+                height: 25,
+                resizeMode: 'contain',
+                tintColor: '#C4C4C4',
+              }}
             />
           </TouchableOpacity>
         </View>

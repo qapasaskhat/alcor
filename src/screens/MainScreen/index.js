@@ -36,7 +36,12 @@ class MainScreen extends React.Component {
     const {navigation} = this.props;
     return (
       <View style={{flex: 1, backgroundColor: '#F1F1F1'}}>
-        <Header title={'My water'} onPress={()=> {navigation.navigate('EditProfile')} }/>
+        <Header
+          title={'My water'}
+          onPress={() => {
+            navigation.navigate('EditProfile');
+          }}
+        />
         <ScrollView style={{padding: 10, paddingTop: 0, zIndex: 0}}>
           <ListCard
             onPress={() => navigation.navigate('InnerScreen')}
@@ -79,8 +84,7 @@ class MainScreen extends React.Component {
                 <View
                   style={{
                     backgroundColor: 'black',
-                    height: '45%',
-                    width: '100%',
+                    flex: 1,
                   }}
                   opacity={0.3}
                 />
@@ -92,11 +96,7 @@ class MainScreen extends React.Component {
                 shadowRadius={50}
                 reducedTransparencyFallbackColor="white"
               />
-              <View
-                style={{
-                  width: '100%',
-                  height: '55%',
-                }}>
+              <View style={{paddingBottom: 60}}>
                 <Image source={minus} style={styles.minus} />
                 <View style={styles.clear}>
                   <Text style={styles.textClear}>Clear all</Text>

@@ -5,24 +5,68 @@ import CameraStack from '../AppStack/CameraStack';
 import MainStack from '../AppStack/MainStack';
 import MapStack from '../AppStack/MapStack';
 
-import {icMain, icCamera, icMap} from '../../assets';
+import {icMain, icCamera, icMap, icExit} from '../../assets';
+
+function hiddenMap(state) {
+  let status = false;
+  if (state.index === 0) {
+    const {routes} = state;
+    if (routes[0] && routes[0].state) {
+      if (routes[0].state.routes) {
+        if (
+          routes[0].state.routes &&
+          routes[0].state.routes.length > 0 &&
+          routes[0].state.routes[routes[0].state.routes.length - 1]
+        ) {
+          if (
+            routes[0].state.routes[routes[0].state.routes.length - 1].name ===
+              'EditProfile' ||
+            routes[0].state.routes[routes[0].state.routes.length - 1].name ===
+              'ChangePassword'
+          ) {
+            status = true;
+          }
+        }
+      }
+    }
+  }
+  return status;
+}
+
+function getStyle(name) {
+  if (name === 'CameraStack') {
+    return {width: 60, height: 60};
+  } else {
+    return {width: 22, height: 22};
+  }
+}
+
+function getIcon(name) {
+  let icon;
+  switch (name) {
+    case 'MainStack':
+      icon = icMain;
+      break;
+    case 'CameraStack':
+      icon = icCamera;
+      break;
+    case 'MapStack':
+      icon = icMap;
+      break;
+    default:
+      break;
+  }
+  return icon;
+}
 
 function MyTabBar({state, descriptors, navigation}) {
-  console.log(state.routes);
-  if (state.index === 1) {
+  if (state.index === 0) {
     return <View />;
   }
   return (
     <View style={styles.shadow} elevation={5}>
       {state.routes.map((route, index) => {
         const {options} = descriptors[route.key];
-        const label =
-          options.tabBarLabel !== undefined
-            ? options.tabBarLabel
-            : options.title !== undefined
-            ? options.title
-            : route.name;
-
         const isFocused = state.index === index;
 
         const onPress = () => {
@@ -43,6 +87,25 @@ function MyTabBar({state, descriptors, navigation}) {
           });
         };
 
+        if (hiddenMap(state) && route.name === 'MapStack') {
+          return (
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('AuthStack');
+              }}
+              style={{alignItems: 'center', width: 80}}>
+              <View style={styles.raduis}>
+                <Image
+                  style={{width: 10, height: 10, resizeMode: 'contain'}}
+                  source={icExit}
+                />
+              </View>
+
+              <Text style={styles.title}>Log out</Text>
+            </TouchableOpacity>
+          );
+        }
+
         return (
           <TouchableOpacity
             accessibilityRole="button"
@@ -52,29 +115,9 @@ function MyTabBar({state, descriptors, navigation}) {
             onPress={onPress}
             onLongPress={onLongPress}
             style={{alignItems: 'center', width: 80}}>
-            <Image
-              style={
-                route.name !== 'CameraStack'
-                  ? {width: 22, height: 22}
-                  : {width: 60, height: 60}
-              }
-              source={
-                route.name === 'MainStack'
-                  ? icMain
-                  : route.name === 'CameraStack'
-                  ? icCamera
-                  : icMap
-              }
-            />
+            <Image style={getStyle(route.name)} source={getIcon(route.name)} />
             {route.name !== 'CameraStack' && (
-              <Text
-                style={{
-                  color: isFocused ? '#3078FF' : '#3078FF',
-                  fontSize: 12,
-                  fontFamily: 'SFProDisplay-Regular',
-                  alignSelf: 'center',
-                  textAlign: 'center',
-                }}>
+              <Text style={styles.title}>
                 {route.name === 'MainStack' ? 'My water' : 'Map'}
               </Text>
             )}
@@ -122,5 +165,18 @@ var styles = StyleSheet.create({
     },
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
+  },
+  title: {
+    color: '#3078FF',
+    fontSize: 12,
+    fontFamily: 'SFProDisplay-Regular',
+    alignSelf: 'center',
+    textAlign: 'center',
+  },
+  raduis: {
+    borderWidth: 0.8,
+    borderRadius: 50,
+    padding: 5,
+    borderColor: '#3078FF',
   },
 });

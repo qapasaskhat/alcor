@@ -16,14 +16,14 @@ class App extends React.Component {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
-            name="AdminTabStack"
-            component={AdminTabStack}
+            name="UserTabStack"
+            component={UserTabStack}
             options={{headerShown: false}}
           />
 
           <Stack.Screen
-            name="UserTabStack"
-            component={UserTabStack}
+            name="AdminTabStack"
+            component={AdminTabStack}
             options={{headerShown: false}}
           />
 
