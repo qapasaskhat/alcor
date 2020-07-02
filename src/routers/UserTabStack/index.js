@@ -60,7 +60,7 @@ function getIcon(name) {
 }
 
 function MyTabBar({state, descriptors, navigation}) {
-  if (state.index === 0) {
+  if (state.index === 1) {
     return <View />;
   }
   return (
